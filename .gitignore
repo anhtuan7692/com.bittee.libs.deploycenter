@@ -41,6 +41,5 @@ buck-out/
 \.buckd/
 *.keystore
 example/android/app/src/debug
-build_defs.bzl
-package.json
+build_defs.bzl 
 yarn.lock
