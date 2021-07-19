@@ -10,16 +10,38 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import DeployCenter from 'bittee.library.deploycenter';
+import { DCVersion, setAppKey } from 'com.bittee.libs.deploycenter';
 
 export default class App extends Component<{}> {
+  state = {
+    status: 'starting',
+    message: '--'
+  };
+  componentDidMount() {
+    setAppKey(9, "");
+
+    DCVersion.checkVersion();
+
+    async function checking() {
+      var isValidate = await DCVersion.checkVersion(true);
+      console.log("isValidate", isValidate);
+    }
+
+    checking();
+    // DcLibs.sampleMethod('Testing', 123, (message) => {
+    //   this.setState({
+    //     status: 'native callback received',
+    //     message
+    //   });
+    // });
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>☆DeployCenter example☆</Text>
-        <Text style={styles.instructions}>STATUS: loaded</Text>
-        <Text style={styles.welcome}>☆☆☆</Text>
-        <DeployCenter />
+        <Text style={styles.welcome}>☆DcLibs example☆</Text>
+        <Text style={styles.instructions}>STATUS: {this.state.status}</Text>
+        <Text style={styles.welcome}>☆NATIVE CALLBACK MESSAGE☆</Text>
+        <Text style={styles.instructions}>{this.state.message}</Text>
       </View>
     );
   }

@@ -1,7 +1,9 @@
 // main index.js
 
-import { requireNativeComponent } from 'react-native';
+import * as DCVersion from './src/version'
 
-const DeployCenter = requireNativeComponent('DeployCenter', null);
+function setAppKey(appId, AppInstallKey) {
+    DCVersion.AppConfig.setAppKey(appId, AppInstallKey);
+}
 
-export default DeployCenter;
+export { DCVersion, setAppKey };

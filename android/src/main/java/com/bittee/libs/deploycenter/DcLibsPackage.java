@@ -1,6 +1,6 @@
-// DeployCenterPackage.java
+// DcLibsPackage.java
 
-package com.reactlibrary;
+package com.bittee.libs.deploycenter;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,14 +11,14 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
-public class DeployCenterPackage implements ReactPackage {
+public class DcLibsPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Collections.emptyList();
+        return Arrays.<NativeModule>asList(new DcLibsModule(reactContext));
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Arrays.<ViewManager>asList(new DeployCenterManager());
+        return Collections.emptyList();
     }
 }
