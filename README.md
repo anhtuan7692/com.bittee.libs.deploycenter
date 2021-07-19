@@ -9,7 +9,7 @@
 `$ react-native link com.bittee.libs.deploycenter`
 
 ### iOS add to file Info.plist
-```plist
+```
 <key>LSApplicationQueriesSchemes</key>
 <array>
     <string>app-deploycenter</string>
