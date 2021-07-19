@@ -10,8 +10,8 @@
 
 ## Usage
 ```javascript
-import DcLibs from 'com.bittee.libs.deploycenter';
+import { DCVersion, setAppKey } from 'com.bittee.libs.deploycenter';
+setAppKey(AppID, AppInstallKey);
 
-// TODO: What to do with the module?
-DcLibs;
-```
+//check for login
+var isAllow = await DCVersion.checkVersion(IsCheckForLogin);
