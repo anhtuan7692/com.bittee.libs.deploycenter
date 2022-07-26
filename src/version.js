@@ -31,7 +31,7 @@ function alertInstall(NewVersion, IsAllow, Url, packageName) {
             //             if (supported) {
             //                 Linking.openURL(Url);
             //             } else {
-            //                 consoleLog("Don't know how to open URI: " + Url);
+            //                  console.log("Don't know how to open URI: " + Url);
             //             }
             //         });
             //     } else if (Platform.OS === "android") {
@@ -55,7 +55,7 @@ function alertInstall(NewVersion, IsAllow, Url, packageName) {
                 if (supported) {
                     Linking.openURL(urlOpen);
                 } else {
-                    consoleLog("Don't know how to open URI: " + urlOpen);
+                    console.log("Don't know how to open URI: " + urlOpen);
                 }
             });
             // }
