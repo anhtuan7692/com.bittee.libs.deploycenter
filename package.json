@@ -1,7 +1,7 @@
 {
   "name": "com.bittee.libs.deploycenter",
   "title": "Com.bittee.libs.deploycenter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "react-native lib for deploy center",
   "main": "index.js",
   "files": [
