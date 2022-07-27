@@ -25,40 +25,18 @@ const AppConfig = new ConfigApp();
 function alertInstall(NewVersion, IsAllow, Url, packageName) {
     let buttons = [{
         text: "Cập nhật", onPress: () => {
-            // if (Url) {
-            //     if (Platform.OS === "ios") {
-            //         Linking.canOpenURL(Url).then((supported) => {
-            //             if (supported) {
-            //                 Linking.openURL(Url);
-            //             } else {
-            //                  console.log("Don't know how to open URI: " + Url);
-            //             }
-            //         });
-            //     } else if (Platform.OS === "android") {
-            //         VersionUpdate.toDownloadFileInstall({
-            //             Url,
-            //             progress: {
-            //                 indeterminate: false,
-            //                 style: "horizontal"
-            //             },
-            //             cancelable: false,
-            //             dismissListener: false,
-            //             content: "Đang tải...",
-            //             packageName: packageName
-            //         });
-            //     }
-            //     isCheckVersion = false;
-            // } else {
             isCheckVersion = false;
             var urlOpen = "app-deploycenter://appid/" + AppConfig.AppInstallKey;
-            Linking.canOpenURL(urlOpen).then((supported) => {
-                if (supported) {
-                    Linking.openURL(urlOpen);
-                } else {
-                    console.log("Don't know how to open URI: " + urlOpen);
-                }
+            Linking.openURL(urlOpen).catch(e => {
+                console.log("Don't know how to open URI: ", e);
             });
-            // }
+            // Linking.canOpenURL(urlOpen).then((supported) => {
+            //     if (supported) {
+            //         Linking.openURL(urlOpen);
+            //     } else {
+            //         console.log("Don't know how to open URI: " + urlOpen);
+            //     }
+            // }); 
         }
     }];
     if (IsAllow) {
