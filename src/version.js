@@ -46,14 +46,17 @@ function alertInstall(NewVersion, IsAllow, Url, packageName) {
     Alert.alert("Cập nhật ứng dụng", "Phiên bản mới " + NewVersion + ". Vui lòng cập nhật để có trải nghiệm tốt hơn!", buttons);
 }
 
-async function checkVersion(isCheckLogin) {
+async function checkVersion(isCheckLogin = false, isReturnAllow = false) {
     if (!isCheckLogin) {
         if (isCheckVersion) return;
         isCheckVersion = true;
     }
     let data = await DcLibs.getAppInfo();
     if (!data) {
-        return true;
+        if (isReturnAllow)
+            return { IsPass: true };
+        else
+            return true;
     }
     return new Promise((resolve, reject) => {
         try {
@@ -82,25 +85,40 @@ async function checkVersion(isCheckLogin) {
                         if (!res.IsOldLive) {
                             if (isCheckLogin) {
                                 if (res.IsAllow) {
-                                    resolve(true);
+                                    if (isReturnAllow)
+                                        resolve({ IsPass: true });
+                                    else
+                                        resolve(true);
                                     return;
                                 }
                             }
                             alertInstall(res.NewVersion, res.IsAllow, res.Url, packageName);
-                            resolve(false);
+                            if (isReturnAllow)
+                                resolve({ IsPass: false, IsAllow: res.IsAllow });
+                            else
+                                resolve(false);
                             return;
                         }
                     }
                 }
                 if (!isCheckLogin) isCheckVersion = false;
-                resolve(true);
+                if (isReturnAllow)
+                    resolve({ IsPass: true });
+                else
+                    resolve(true);
             }).catch(ex => {
                 if (!isCheckLogin) isCheckVersion = false;
-                resolve(true);
+                if (isReturnAllow)
+                    resolve({ IsPass: true });
+                else
+                    resolve(true);
             });
         } catch (e) {
             if (!isCheckLogin) isCheckVersion = false;
-            resolve(true);
+            if (isReturnAllow)
+                resolve({ IsPass: true });
+            else
+                resolve(true);
         }
     });
 }
